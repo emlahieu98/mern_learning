@@ -1,12 +1,14 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
 const PORT = 5000;
 
 const authRouter = require("./apps/routes/auth");
 const postRouter = require("./apps/routes/post");
+
 
 
 const connectDB = async () => {
@@ -24,6 +26,7 @@ const connectDB = async () => {
 
 connectDB();
 
+app.use(cors());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
